@@ -218,7 +218,7 @@ class Game {
   tickState = new TickState();
   options = undefined;
   renderer = undefined;
-  input = [];
+  inputs = [];
 
   onPauseEvents = [];
   onResumeEvents = [];
@@ -234,7 +234,7 @@ class Game {
 
   pause() {
     this.options.isPaused = true;
-    onPauseEvents.forEach((event) => {
+    this.onPauseEvents.forEach((event) => {
       event(this);
     });
   }
@@ -255,7 +255,7 @@ class Game {
   }
 
   addInput(input) {
-    this.input.push(input);
+    this.inputs.push(input);
   }
 
   tickLoop() {
@@ -265,7 +265,7 @@ class Game {
     const deltaSeconds = (currentTime - tickState.lastTime) / 1000;
     currentLevel.timeSinceLevelStart += deltaSeconds;
 
-    this.input.forEach((input) => {
+    this.inputs.forEach((input) => {
       input.tick(deltaSeconds, tickState);
     });
 
@@ -293,11 +293,11 @@ class Game {
   }
 
   start() {
-    if (this.input.length < 1) {
+    if (this.inputs.length < 1) {
       throw new Error('No input was defined.');
     }
 
-    this.input.forEach((input) => {
+    this.inputs.forEach((input) => {
       input.gameRef = this;
     });
 
@@ -317,7 +317,7 @@ class Game {
 
     window.removeEventListener('focus', this.resume.bind(this));
     window.addEventListener('focus', this.resume.bind(this));
-    console.log({ ...this });
+    // console.log({ ...this });
     this.tickState.lastTime = performance.now();
     this.tickLoop();
     this.renderLoop();

@@ -43,11 +43,12 @@ class ASnakeActor extends AActor {
     this.snakeDirection = snakeDirection;
     this.pickupsActorRef = this.getCurrentLevel().getActorByName('Pickups');
 
-    this.getGame().onResumeEvents.push(
-      function () {
-        this.snakeDirection = this.randomDirection();
-      }.bind(this)
-    );
+    const game = this.getGame();
+    const resetTimeSinceLastUpdate = function () {
+      this.timeSinceLastUpdate = 0;
+    }.bind(this);
+
+    game.onResumeEvents.push(resetTimeSinceLastUpdate);
   }
 
   tick(deltaSeconds, tickState) {
@@ -133,17 +134,9 @@ class ASnakeActor extends AActor {
     body.forEach((cell, i) => {
       if (i === 0) return;
       renderer.fillRectangle(cell.x, cell.y, cellSize, cellSize, snakeColor);
-      renderer.strokeSquare(
-        cell.x,
-        cell.y,
-        cellSize,
-        cellSize,
-        backgroundColor
-      );
     });
 
     const { x, y } = body[0];
     renderer.fillSquare(x, y, cellSize, headColor);
-    renderer.strokeSquare(x, y, cellSize, backgroundColor);
   }
 }

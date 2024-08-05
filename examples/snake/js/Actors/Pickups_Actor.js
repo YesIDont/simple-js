@@ -24,7 +24,6 @@ class APickupsActor extends AActor {
 
     this.pickups.forEach((pickup) => {
       renderer.fillSquare(pickup.x, pickup.y, cellSize, pickupColor);
-      renderer.strokeSquare(pickup.x, pickup.y, cellSize, backgroundColor);
     });
   }
 }

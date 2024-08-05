@@ -14,11 +14,11 @@ class SnakeInput extends SimpleKeyboardInput {
       if (!options.isPaused) {
         // if unpaused reset lastTime to avoid a big deltaTime
         tickState.lastTime = performance.now();
-        console.log('resume');
+        // console.log('resume');
       }
       pressedKeys.Space = undefined;
       if (options.isPaused) {
-        console.log('paused');
+        // console.log('paused');
         return;
       }
     }
@@ -28,19 +28,19 @@ class SnakeInput extends SimpleKeyboardInput {
 
     if (pressedKeys.ArrowUp) {
       snakeActor.newDirection = snakeActor.up;
-      console.log('up');
+      // console.log('up');
     } //
     else if (pressedKeys.ArrowDown) {
       snakeActor.newDirection = snakeActor.down;
-      console.log('down');
+      // console.log('down');
     } //
     else if (pressedKeys.ArrowLeft) {
       snakeActor.newDirection = snakeActor.left;
-      console.log('left');
+      // console.log('left');
     } //
     else if (pressedKeys.ArrowRight) {
       snakeActor.newDirection = snakeActor.right;
-      console.log('right');
+      // console.log('right');
     }
   }
 }

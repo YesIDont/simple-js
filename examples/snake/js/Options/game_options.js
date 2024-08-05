@@ -2,7 +2,7 @@ class SnakeOptions extends GameOptions {
   cellSize = 20;
   snakeSpeed = 3;
   speedStep = 1;
-  snakeColor = '#bbff00';
+  snakeColor = '#ccff11';
   headColor = '#00ff00';
   pickupColor = '#ff55cc';
   backgroundColor = '#663300';
